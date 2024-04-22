@@ -1,7 +1,8 @@
-import { useState, useReducer } from "react";
+import { useReducer, createContext } from "react";
 import { v4 as uuidv4 } from 'uuid';
 import 'milligram';
 import './App.css';
+import TodoContext from "./todoContext";
 import Filter from "./components/Filter";
 import TodoList from "./components/TodoList";
 import AddTodo from "./components/AddTodo";
@@ -23,7 +24,6 @@ const initialTodos = [
     complete: true,
   },
 ];
-
 const App = () => {
   const filterReducer = (state, action) => {
     switch (action.type) {
@@ -68,30 +68,30 @@ const App = () => {
     }
   };
 
-  const [filter, dispatchFilter] = useReducer(filterReducer, 'ALL');
-  const [todos, dispatchTodos]   = useReducer(todoReducer, initialTodos);
-  const filteredTodos = todos.filter(todo => {
-    if (filter === 'ALL') {
+  const [filter, dispatchFilter] = useReducer( filterReducer, 'ALL' );
+  const [todos, dispatchTodos]   = useReducer( todoReducer, initialTodos );
+  const filteredTodos = todos.filter( todo => {
+    if ( filter === 'ALL' ) {
       return true;
     }
 
-    if (filter === 'COMPLETE' && todo.complete) {
+    if ( filter === 'COMPLETE' && todo.complete ) {
       return true;
     }
 
-    if (filter === 'INCOMPLETE' && !todo.complete) {
+    if ( filter === 'INCOMPLETE' && !todo.complete ) {
       return true;
     }
 
     return false;
-  });
+  } );
 
   return (
-    <>
+    <TodoContext.Provider value={ dispatchTodos }>
       <Filter dispatch={ dispatchFilter } />
-      <TodoList dispatch={ dispatchTodos } todos={ filteredTodos } />
-      <AddTodo dispatch={ dispatchTodos } />
-    </>
+      <TodoList todos={ filteredTodos } />
+      <AddTodo />
+    </TodoContext.Provider>
   );
 }
 

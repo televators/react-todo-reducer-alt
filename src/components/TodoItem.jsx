@@ -1,4 +1,8 @@
-const TodoItem = ( { dispatch, todo } ) => {
+import { useContext } from "react";
+import TodoContext from "../todoContext";
+
+const TodoItem = ( { todo } ) => {
+  const dispatch = useContext( TodoContext );
   const handleChange = () => {
     dispatch( {
       type: todo.complete ? 'UNDO_TODO' : 'DO_TODO',
@@ -13,7 +17,7 @@ const TodoItem = ( { dispatch, todo } ) => {
           className="task__checkbox"
           type="checkbox"
           checked={ todo.complete }
-          onChange={ () => handleChange( todo ) }
+          onChange={ handleChange }
         />
         { todo.task }
       </label>
