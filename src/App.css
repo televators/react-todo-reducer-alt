@@ -1,0 +1,75 @@
+#root {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+button {
+  margin: 0;
+	line-height: 1;
+	padding-top: 0.7em;
+}
+
+section {
+  width: 100%;
+  max-width: 600px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.task-list__wrapper {
+  padding-top: 4.5rem;
+  text-align: center;
+}
+
+.task-list {
+  display: inline-block;
+  list-style: none;
+  text-align: left;
+}
+
+.task {
+  display: inline-flex;
+  align-items: center;
+  gap: 1.5rem;
+  color: #fff;
+  font-size: 2.25rem;
+  font-weight: 400;
+}
+
+.task--complete {
+	text-decoration: line-through;
+	color: gray;
+}
+
+.task__checkbox {
+  margin: 0;
+}
+
+.task-form {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  gap: 1rem;
+}
+
+.task-form__input {
+  height: auto !important;
+  margin: 0;
+  padding: 0.6rem 1rem 0.7rem !important;
+  font-size: 1em;
+  line-height: 1;
+}
+
+.task-form__submit {
+  margin: 0;
+}
+
+.task-filter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
