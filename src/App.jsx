@@ -2,6 +2,9 @@ import { useState, useReducer } from "react";
 import { v4 as uuidv4 } from 'uuid';
 import 'milligram';
 import './App.css';
+import Filter from "./components/Filter";
+import TodoList from "./components/TodoList";
+import AddTodo from "./components/AddTodo";
 
 const initialTodos = [
   {
@@ -35,6 +38,8 @@ const App = () => {
     }
   };
   const todoReducer = (state, action) => {
+    console.log( state );
+
     switch (action.type) {
       case 'DO_TODO':
         return state.map(todo => {
@@ -56,7 +61,7 @@ const App = () => {
         return state.concat({
           task: action.task,
           id: action.id,
-          complete: task,
+          complete: false,
         });
       default:
         throw new Error();

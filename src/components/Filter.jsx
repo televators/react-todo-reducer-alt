@@ -1,12 +1,12 @@
-const Filter = ( { dispatchFilter } ) => {
+const Filter = ( { dispatch } ) => {
   const handleShowAll = () => {
-    dispatchFilter({type: 'SHOW_ALL'});
+    dispatch({type: 'SHOW_ALL'});
   };
   const handleShowComplete = () => {
-    dispatchFilter({type: 'SHOW_COMPLETE'});
+    dispatch({type: 'SHOW_COMPLETE'});
   };
   const handleShowIncomplete = () => {
-    dispatchFilter({type: 'SHOW_INCOMPLETE'});
+    dispatch({type: 'SHOW_INCOMPLETE'});
   };
 
   return (
