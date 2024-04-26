@@ -1,8 +1,8 @@
 import { useContext } from "react";
-import TodoContext from "../todoContext";
+import DispatchContext from "../DispatchContext";
 
 const TodoItem = ( { todo } ) => {
-  const dispatch = useContext( TodoContext );
+  const dispatch = useContext( DispatchContext );
   const handleChange = () => {
     dispatch( {
       type: todo.complete ? 'UNDO_TODO' : 'DO_TODO',

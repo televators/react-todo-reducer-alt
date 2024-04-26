@@ -2,7 +2,7 @@ import { useReducer } from "react";
 import { v4 as uuidv4 } from 'uuid';
 import 'milligram';
 import './App.css';
-import TodoContext from "./todoContext";
+import DispatchContext from "./DispatchContext";
 import Filter from "./components/Filter";
 import TodoList from "./components/TodoList";
 import AddTodo from "./components/AddTodo";
@@ -34,12 +34,10 @@ const App = () => {
       case 'SHOW_INCOMPLETE':
         return 'INCOMPLETE';
       default:
-        throw new Error();
+        return state;
     }
   };
   const todoReducer = (state, action) => {
-    console.log( state );
-
     switch (action.type) {
       case 'DO_TODO':
         return state.map(todo => {
@@ -64,7 +62,7 @@ const App = () => {
           complete: false,
         });
       default:
-        throw new Error();
+        return state;
     }
   };
 
@@ -86,12 +84,16 @@ const App = () => {
     return false;
   } );
 
+  const dispatch = action => {
+    [dispatchTodos, dispatchFilter].forEach( fn => fn( action ) );
+  };
+
   return (
-    <TodoContext.Provider value={ dispatchTodos }>
-      <Filter dispatch={ dispatchFilter } />
+    <DispatchContext.Provider value={ dispatch }>
+      <Filter/>
       <TodoList todos={ filteredTodos } />
       <AddTodo />
-    </TodoContext.Provider>
+    </DispatchContext.Provider>
   );
 }
 
